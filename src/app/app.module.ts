@@ -1,11 +1,11 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './/app-routing.module';
 import { HomeModule } from './home/home.module';
+import { AppRoutingModule } from './app-routing.module';
 
 /*
 === AppModule ===
@@ -14,17 +14,17 @@ application and combining other modules together
 */
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
     SharedModule,
     HomeModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './layout/header.component';
+import { FooterComponent } from './layout/footer.component';
 
 /*
 === SharedModule ===
@@ -12,6 +14,13 @@ can be imported by feature modules.
   imports: [
     CommonModule
   ],
-  declarations: []
+  declarations: [
+    HeaderComponent,
+    FooterComponent
+  ],
+  exports: [
+    HeaderComponent,
+    FooterComponent
+  ]
 })
 export class SharedModule { }
