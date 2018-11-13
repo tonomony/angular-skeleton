@@ -1,0 +1,40 @@
+.app-loading {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1 !important;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.app-loading-spinner {
+    position: absolute;
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    left: 50%;
+    top: 50%;
+    z-index: 1000;
+}
+
+.app-loading-spinner:after {
+    content: " ";
+    display: block;
+    width: 46px;
+    height: 46px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.7) transparent rgba(255, 255, 255, 0.7) transparent;
+    animation: app-loading-spinner 1.2s linear infinite;
+}
+
+@keyframes app-loading-spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

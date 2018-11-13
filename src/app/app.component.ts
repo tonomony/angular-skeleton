@@ -1,21 +1,26 @@
-import { Component, OnInit } from '@angular/core';
-import { Title }     from '@angular/platform-browser';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { AppModel } from './core/models/app.model';
+import { AppModule } from './app.module';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  implements OnInit {
-  public constructor(private titleService: Title ) { }
+export class AppComponent implements OnInit {
 
-  title:string;
+  app: AppModel;
+
+  public constructor(private titleService: Title) {
+    this.app = {
+      title: 'tonomony-angular-skeleton',
+      isLoading: true
+    };
+  }
 
   ngOnInit() {
-    // todo: move title assignment to core-service
-    // => takes care of changing all needed title changes (title, h1, nav...)
-    this.title = 'tonomony-angular-skeleton';
-    this.titleService.setTitle(this.title);
-    
+    this.titleService.setTitle(this.app.title);
+    this.app.isLoading = false;
   }
 }

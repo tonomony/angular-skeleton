@@ -1,7 +1,8 @@
 <div class="app">
-    <app-header [title]="title"></app-header>
+    <app-header [title]="app.title"></app-header>
     
     <router-outlet></router-outlet>
     
     <app-footer></app-footer>
 </div>
+<app-loading *ngIf="app.isLoading"></app-loading>
