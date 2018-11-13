@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
+import { Component, OnInit } from '@angular/core';
+import { AppService } from './core/services/app.service';
 import { AppModel } from './core/models/app.model';
 
 @Component({
@@ -9,17 +9,25 @@ import { AppModel } from './core/models/app.model';
 })
 export class AppComponent implements OnInit {
 
-  app: AppModel;
-
-  public constructor(private titleService: Title) {
-    this.app = {
-      title: 'tonomony-angular-skeleton',
-      isLoading: true
-    };
+  constructor(private appService: AppService) {
   }
 
+  app : AppModel;
+
   ngOnInit() {
-    this.titleService.setTitle(this.app.title);
-    this.app.isLoading = false;
+    
+    this.app = {
+      title: 'tonomony-angular-skeleton',
+      isLoading: false
+    }
+
+    // todo: Auto update?
+    this.appService.update(this.app);
+    
+    this.appService.model.subscribe(
+      (appModel) => {
+        this.app = appModel;
+      }
+    )
   }
 }
