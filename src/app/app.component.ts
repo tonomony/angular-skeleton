@@ -9,11 +9,13 @@ import { Title }     from '@angular/platform-browser';
 export class AppComponent  implements OnInit {
   public constructor(private titleService: Title ) { }
 
-  title = 'tonomony-angular-skeleton';
+  title:string;
 
   ngOnInit() {
     // todo: move title assignment to core-service
     // => takes care of changing all needed title changes (title, h1, nav...)
+    this.title = 'tonomony-angular-skeleton';
     this.titleService.setTitle(this.title);
+    
   }
 }
