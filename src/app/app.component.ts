@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { AppModel } from './core/models/app.model';
-import { AppModule } from './app.module';
 
 @Component({
   selector: 'app-root',

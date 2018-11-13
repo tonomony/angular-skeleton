@@ -9,9 +9,6 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  // TODO: How to set title?
-  title = '';
-
   ngOnInit() {
   }
 
