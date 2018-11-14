@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from './core/services/app.service';
-import { AppModel } from './core/models/app.model';
 
 @Component({
   selector: 'app-root',
@@ -9,25 +8,9 @@ import { AppModel } from './core/models/app.model';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private appService: AppService) {
+  constructor(public app: AppService) {
   }
 
-  app : AppModel;
-
   ngOnInit() {
-    
-    this.app = {
-      title: 'tonomony-angular-skeleton',
-      isLoading: false
-    }
-
-    // todo: Auto update?
-    this.appService.update(this.app);
-    
-    this.appService.model.subscribe(
-      (appModel) => {
-        this.app = appModel;
-      }
-    )
   }
 }

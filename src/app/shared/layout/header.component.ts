@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { AppService } from 'src/app/core/services/app.service';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -6,13 +8,21 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  
-  @Input() title: string;
 
-  constructor() { }
+  title: string;
+
+  constructor(private app: AppService) { }
 
   ngOnInit() {
-
+    this.app.settings$()
+      .pipe(
+        map(s => s.pageTitle),
+        distinctUntilChanged())
+      .subscribe(
+        (pageTitle) => {
+          this.title = pageTitle;
+        }
+      );
   }
 
 }

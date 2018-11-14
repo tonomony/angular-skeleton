@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoadingService } from 'src/app/core/services/loading.service';
 
 @Component({
   selector: 'app-loading',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoadingComponent implements OnInit {
 
-  constructor() { }
+  isLoading: boolean;
+  progress: number;
+
+  constructor(private loading: LoadingService) {
+  }
 
   ngOnInit() {
+    this.loading.isLoading$().subscribe(
+      (isLoading) => {
+        this.isLoading = isLoading;
+      }
+    );
+
+    this.loading.currentProgress$("home").subscribe(
+      (progress) => { 
+        this.progress = progress; 
+      }
+    );
   }
 
 }

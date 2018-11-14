@@ -1,4 +1,5 @@
 export interface AppModel {
-    title: string;
+    appTitle: string;
+    pageTitle: string;
     isLoading: boolean;
 }

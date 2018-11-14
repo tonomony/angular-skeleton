@@ -1,20 +1,41 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Observable ,  BehaviorSubject ,  ReplaySubject } from 'rxjs';
-import { map ,  distinctUntilChanged } from 'rxjs/operators';
-
-import {AppModel} from '../models/app.model'
+import { AppModel } from '../models/app.model'
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map, distinctUntilChanged } from 'rxjs/operators';
 
 @Injectable()
-export class AppService{
-    private modelSubject = new BehaviorSubject<AppModel>({} as AppModel);
-    public model = this.modelSubject.asObservable().pipe(distinctUntilChanged());
+export class AppService {
+
+    private settingsSubject = new BehaviorSubject<AppModel>({
+        appTitle: "tonomony-angular-skeleton",
+        pageTitle: "",
+        isLoading: true
+    } as AppModel);
 
     constructor(private titleService: Title) {
     }
 
-    update(app: AppModel) {
-        this.modelSubject.next(app);
-        this.titleService.setTitle(app.title);
+    settings$() {
+        return this.settingsSubject
+            .asObservable()
+            .pipe(distinctUntilChanged());
+    }
+
+    setPageTitle(title: string): Observable<string> {
+        let settings = this.settingsSubject.value;
+        settings.pageTitle = title;
+
+        if (settings.pageTitle === '') {
+            this.titleService.setTitle(settings.appTitle);
+        } else {
+            this.titleService.setTitle(settings.pageTitle + " | " + settings.appTitle);
+        }
+
+        this.settingsSubject.next(settings);
+
+        return this.settings$().pipe(
+            map(s => s.pageTitle)
+        )
     }
 }

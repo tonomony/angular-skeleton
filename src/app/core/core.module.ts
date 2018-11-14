@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { AppService } from './services/app.service';
+import { LoadingService } from './services/loading.service';
 
 /*
 === CoreModule ===
@@ -14,7 +16,8 @@ imported by other application modules
     CommonModule
   ],
   providers: [
-    AppService
+    AppService,
+    LoadingService
   ]
 })
 export class CoreModule { }
