@@ -7,27 +7,18 @@ export class LoadingService {
 
     private loadingsSubject = new BehaviorSubject<Array<[string, number]>>([]);
 
-    constructor() {
-    }
-
-    private getLoadingProcess(loadings: Array<[string, number]>, key: string) {
-        let loading = loadings.find(x => x[0] == key);
-        if (loading) {
-            return loading[1];
-        }
-        return 0;
-    }
-
-    isLoading$(): Observable<boolean> {
-        return this.loadingsSubject.pipe(
+    isLoadingGlobally$: Observable<boolean> = this.loadingsSubject
+        .pipe(
             map(a => a.length > 0),
             distinctUntilChanged()
         );
+
+    constructor() {
     }
 
     currentProgress$(key: string): Observable<number> {
         return this.loadingsSubject.pipe(
-            map(a => this.getLoadingProcess(a, key)),
+            map(a => this.getLoadingProgress(a, key)),
             distinctUntilChanged()
         );
     }
@@ -40,7 +31,7 @@ export class LoadingService {
             this.loadingsSubject.next(loadings);
         }
 
-        return this.isLoading$();
+        return this.isLoadingGlobally$;
     }
 
     stopLoading(key: string): Observable<boolean> {
@@ -49,7 +40,7 @@ export class LoadingService {
         loadings.splice(index);
         this.loadingsSubject.next(loadings);
 
-        return this.isLoading$();
+        return this.isLoadingGlobally$;
     }
 
     setLoadingProgress(key: string, progress: number): Observable<boolean> {
@@ -64,6 +55,14 @@ export class LoadingService {
         }
         this.loadingsSubject.next(loadings);
 
-        return this.isLoading$();
+        return this.isLoadingGlobally$;
+    }
+
+    private getLoadingProgress(loadings: Array<[string, number]>, key: string): number {
+        let loading = loadings.find(x => x[0] == key);
+        if (loading) {
+            return loading[1];
+        }
+        return 0;
     }
 }

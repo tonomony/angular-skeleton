@@ -15,7 +15,7 @@ export class LoadingComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loading.isLoading$().subscribe(
+    this.loading.isLoadingGlobally$.subscribe(
       (isLoading) => {
         this.isLoading = isLoading;
       }
