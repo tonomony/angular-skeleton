@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../core/services/app.service';
-import { LoadingService } from 'tonomony-ng-core-lib';
+import { LoadingService } from '@tonomony/ng-core-lib';
 
 @Component({
   selector: 'app-home',
