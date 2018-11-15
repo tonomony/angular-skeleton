@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AppService } from './services/app.service';
-import { LoadingService } from './services/loading.service';
+import { LoadingService } from 'tonomony-ng-core-lib';
 
 /*
 === CoreModule ===

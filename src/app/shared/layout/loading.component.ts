@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingService } from 'src/app/core/services/loading.service';
+import { LoadingService } from 'tonomony-ng-core-lib';
 
 @Component({
   selector: 'app-loading',
