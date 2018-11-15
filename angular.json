@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "tonomony-angular-skeleton": {
+    "tonomony-ng-skeleton-app": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/tonomony-angular-skeleton",
+            "outputPath": "dist/tonomony-ng-skeleton-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -55,18 +55,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "tonomony-angular-skeleton:build"
+            "browserTarget": "tonomony-ng-skeleton-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "tonomony-angular-skeleton:build:production"
+              "browserTarget": "tonomony-ng-skeleton-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "tonomony-angular-skeleton:build"
+            "browserTarget": "tonomony-ng-skeleton-app:build"
           }
         },
         "test": {
@@ -100,7 +100,7 @@
         }
       }
     },
-    "tonomony-angular-skeleton-e2e": {
+    "tonomony-ng-skeleton-app-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -108,11 +108,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "tonomony-angular-skeleton:serve"
+            "devServerTarget": "tonomony-ng-skeleton-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "tonomony-angular-skeleton:serve:production"
+              "devServerTarget": "tonomony-ng-skeleton-app:serve:production"
             }
           }
         },
@@ -128,5 +128,5 @@
       }
     }
   },
-  "defaultProject": "tonomony-angular-skeleton"
+  "defaultProject": "tonomony-ng-skeleton-app"
 }
